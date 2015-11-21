@@ -29,7 +29,7 @@ function findByID(id, callback) {
 }
 
 //Create
-function create(name, i, callback){
+function create(name, age, callback){
 
   var GetUser = require('./GetUser');
   var User = GetUser.GetUser()
@@ -49,7 +49,7 @@ function create(name, i, callback){
     if (error) {
       return callback(error)
     }
-    callback(null, i)
+    callback(null, dataObject)
   })
 }
 
