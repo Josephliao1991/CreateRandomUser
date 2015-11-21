@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var DataObject = require('./DataObject/DataObject');
+var Constants   = require(process.cwd()+'/Constants/Constants');
 
 //callback(error, success, dataObject)
 
@@ -17,15 +18,20 @@ function findByID(id, callback) {
 
 function create(name, age, callback){
   // body...
+  for (var i = 0; i < Constants.CreateTimes; i++) {
+    DataObject.create(name, i, function (error, index) {
+      // body...
+      if (error) {
+        console.log(error);
+        return callback(null, false)
+      }
+      if (index == Constants.CreateTimes) {
+        callback(null, true, index)
+      }
 
-  DataObject.create(name, age, function (error, dataObject) {
-    // body...
-    if (error) {
-      console.log(error);
-      return callback(null, false)
-    }
-    callback(null, true, dataObject)
-  })
+    })
+  }
+
 }
 
 function updateAll(id, name, age, callback) {
@@ -81,11 +87,11 @@ function deleteByID(id, callback) {
 
 module.exports = {
 
-    findByID    : findByID,
-    create      : create,
-    updateAll   : updateAll,
-    updateName  : updateName,
-    updateAge   : updateAge,
-    deleteByID  : deleteByID
+  findByID    : findByID,
+  create      : create,
+  updateAll   : updateAll,
+  updateName  : updateName,
+  updateAge   : updateAge,
+  deleteByID  : deleteByID
 
 }
