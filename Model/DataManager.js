@@ -18,19 +18,21 @@ function findByID(id, callback) {
 
 function create(name, age, callback){
   // body...
-  for (var i = 0; i < Constants.CreateTimes; i++) {
-    DataObject.create(name, i, function (error, index) {
+
+  setInterval(function() {
+    DataObject.create(name, age, function (error, dataObject) {
       // body...
       if (error) {
         console.log(error);
         return callback(null, false)
       }
-      if (index == Constants.CreateTimes) {
-        callback(null, true, index)
-      }
-
+      
+      callback(null, true, dataObject)
     })
-  }
+  }, 1000);
+
+
+
 
 }
 

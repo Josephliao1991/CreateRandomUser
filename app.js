@@ -10,9 +10,8 @@ DatabaseAccess.connect(DatabaseAccess.MONGODB, function (error, success) {
 
   //Start To Create User
   DataManager.create("name", 12, function (error, success, dataObject) {
-    if (success) {
-      process.close()
-    }
+    console.log("dataObject.Name : "+dataObject.Name);
+    console.log("dataObject.Age : "+dataObject.Age);
   })
 
 
