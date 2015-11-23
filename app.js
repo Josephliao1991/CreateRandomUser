@@ -14,6 +14,4 @@ DatabaseAccess.connect(DatabaseAccess.MONGODB, function (error, success) {
     console.log("dataObject.Age : "+dataObject.Age);
   })
 
-
-
 })
